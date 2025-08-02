@@ -158,9 +158,66 @@ function handleLogout() {
     localStorage.removeItem('authToken');
     localStorage.removeItem('currentUser');
     
+    // 폼 필드 초기화
+    clearAuthForms();
+    
     updateUIForLoggedOutUser();
     showMessage('로그아웃되었습니다.', 'info');
     showSection('home');
+}
+
+// 인증 폼 필드 초기화
+function clearAuthForms() {
+    // 로그인 폼 초기화
+    const loginForm = document.querySelector('#loginForm form');
+    if (loginForm) {
+        loginForm.reset();
+    }
+    
+    // 회원가입 폼 초기화
+    const signupForm = document.querySelector('#signupForm form');
+    if (signupForm) {
+        signupForm.reset();
+    }
+}
+
+// 섹션 표시
+function showSection(sectionName) {
+    // 모든 섹션 숨기기
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+    
+    // 선택된 섹션 보이기
+    const targetSection = document.getElementById(sectionName);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+    }
+}
+
+// 로그인 폼 표시
+function showLogin() {
+    clearAuthForms(); // 폼 초기화
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    
+    if (loginForm && signupForm) {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+    }
+}
+
+// 회원가입 폼 표시
+function showSignup() {
+    clearAuthForms(); // 폼 초기화
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    
+    if (loginForm && signupForm) {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+    }
 }
 
 // 로그인된 사용자를 위한 UI 업데이트
@@ -269,7 +326,9 @@ function showLoading(show) {
             button.textContent = '처리 중...';
         } else {
             button.disabled = false;
-            if (button.form && button.form.id === 'loginForm') {
+            // 부모 div의 id로 구분
+            const parentDiv = button.closest('[id]');
+            if (parentDiv && parentDiv.id === 'loginForm') {
                 button.textContent = '로그인';
             } else {
                 button.textContent = '회원가입';
