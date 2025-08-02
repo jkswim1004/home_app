@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Portfolio - AI 시대 취준생</title>
+    <!-- CSS 스타일시트 -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- 배경 파티클 -->
+    <div class="particles" id="particles"></div>
+
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Future Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="javascript:void(0)" onclick="showSection('home')">홈</a></li>
+                <li><a href="javascript:void(0)" onclick="showSection('portfolio')">포트폴리오</a></li>
+                <li><a href="javascript:void(0)" onclick="showSection('login')">로그인</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- 홈 섹션 -->
+        <section class="home-section section active" id="home">
+            <div class="hero-content">
+                <h1>AI 시대의 취준생</h1>
+                <p>미래를 준비하는 개발자의 포트폴리오<br>
+                   혁신적인 기술로 새로운 가능성을 만들어갑니다</p>
+                <a href="javascript:void(0)" class="cta-button" onclick="showSection('portfolio')">포트폴리오 보기</a>
+            </div>
+        </section>
+
+        <!-- 포트폴리오 섹션 -->
+        <section class="portfolio-section section" id="portfolio">
+            <h2>Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <h3>AI 챗봇 프로젝트</h3>
+                    <p>자연어 처리 기술을 활용한 고객 서비스 챗봇을 개발했습니다. 머신러닝 알고리즘을 통해 사용자 의도를 정확히 파악하고 적절한 답변을 제공합니다.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>반응형 웹 애플리케이션</h3>
+                    <p>모던한 UI/UX 디자인과 최신 웹 기술을 적용한 반응형 웹 애플리케이션입니다. 모바일과 데스크톱 모든 환경에서 최적화된 사용자 경험을 제공합니다.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>데이터 분석 대시보드</h3>
+                    <p>빅데이터 처리와 시각화를 위한 대시보드 시스템입니다. 실시간 데이터 모니터링과 인사이트 도출을 통해 비즈니스 의사결정을 지원합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 로그인 섹션 -->
+        <section class="auth-section section" id="login">
+            <div class="auth-container">
+                <div id="loginForm">
+                    <h2>로그인</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="loginId">아이디</label>
+                            <input type="text" id="loginId" name="loginId" placeholder="아이디를 입력하세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">비밀번호</label>
+                            <input type="password" id="loginPassword" name="loginPassword" placeholder="비밀번호를 입력하세요" required>
+                        </div>
+                        <button type="submit" class="auth-button">로그인</button>
+                    </form>
+                    <div class="switch-form">
+                        계정이 없으신가요? <a href="javascript:void(0)" onclick="showSignup()">회원가입</a>
+                    </div>
+                </div>
+
+                <div id="signupForm" style="display: none;">
+                    <h2>회원가입</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="signupId">아이디</label>
+                            <input type="text" id="signupId" name="signupId" placeholder="아이디를 입력하세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">비밀번호</label>
+                            <input type="password" id="signupPassword" name="signupPassword" placeholder="비밀번호를 입력하세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupName">이름</label>
+                            <input type="text" id="signupName" name="signupName" placeholder="이름을 입력하세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPhone">연락처</label>
+                            <input type="tel" id="signupPhone" name="signupPhone" 
+                                   placeholder="010-1234-5678" 
+                                   pattern="[0-9-]+" 
+                                   title="숫자와 하이픈만 입력 가능합니다"
+                                   maxlength="13"
+                                   required>
+                        </div>
+                        <button type="submit" class="auth-button">회원가입</button>
+                    </form>
+                    <div class="switch-form">
+                        이미 계정이 있으신가요? <a href="javascript:void(0)" onclick="showLogin()">로그인</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 인증 JavaScript -->
+    <script src="/js/auth.js"></script>
+    
+    <script>
+        // 파티클 생성
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // 섹션 전환
+        function showSection(sectionName) {
+            
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionName).classList.add('active');
+            
+            // 로그인 섹션일 때는 항상 로그인 폼 표시
+            if (sectionName === 'login') {
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('signupForm').style.display = 'none';
+            }
+            
+            // 해당 섹션으로 부드럽게 스크롤
+            const targetSection = document.getElementById(sectionName);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // 로그인/회원가입 폼 전환
+        function showSignup() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+
+        // 페이지 로드 시 파티클 생성
+        window.addEventListener('load', createParticles);
+
+        // 스크롤 효과
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
