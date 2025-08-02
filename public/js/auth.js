@@ -65,6 +65,13 @@ async function handleSignup(event) {
             })
         });
         
+        // HTTP 상태 코드 체크
+        if (!response.ok) {
+            const errorData = await response.json();
+            showMessage(errorData.message || '회원가입에 실패했습니다.', 'error');
+            return;
+        }
+        
         const data = await response.json();
         
         if (data.success) {
@@ -113,6 +120,13 @@ async function handleLogin(event) {
                 loginPassword
             })
         });
+        
+        // HTTP 상태 코드 체크
+        if (!response.ok) {
+            const errorData = await response.json();
+            showMessage(errorData.message || '로그인에 실패했습니다.', 'error');
+            return;
+        }
         
         const data = await response.json();
         
