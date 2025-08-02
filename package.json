@@ -22,7 +22,7 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["portfolio", "supabase", "authentication", "vercel"],
+  "keywords": ["portfolio", "supabase", "authentication", "vercel", "render"],
   "author": "AI 시대 취준생",
   "license": "MIT"
 }
